@@ -33,17 +33,23 @@ import java.util.Set;
 public class Test16 {
     @Test
     public void test(){
-        System.out.println(fourSumCount(new int[]{1,2}, new int[]{-2,-1}, new int[]{-1,2}, new int[]{0,2}));
+//        System.out.println(fourSumCount(new int[]{1,2}, new int[]{-2,-1}, new int[]{-1,2}, new int[]{0,2}));
+        System.out.println(fourSumCount(new int[]{-1,-1}, new int[]{-1,1}, new int[]{-1,1}, new int[]{1,-1}));
     }
 
     public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
         int res = 0;
-        Map<Integer, Set<Integer>> map = new HashMap<>();
-        List<int[]> arrayList = new ArrayList<>(Arrays.asList(nums1,nums2,nums3,nums4));
-        for (int i = 0; i < arrayList.size(); i++) {
-            int[] ints = arrayList.get(i);
-            for (int j = 0; j < ints.length; j++) {
-
+        Map<Integer, Integer> map = new HashMap<>();//键为相加之后值，value为个数
+        for (int i : nums1) {
+            for (int j : nums2) {
+                map.put(i+j,map.getOrDefault(i+j,0)+1);
+            }
+        }
+        for (int i : nums3) {
+            for (int j : nums4) {
+                if (map.containsKey(-(i+j))){
+                    res += map.get(-(i+j));
+                }
             }
         }
         return res;
