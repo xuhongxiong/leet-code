@@ -58,7 +58,7 @@ public class Test17 {
                 queue.poll();
             }
         }*/
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(new Comparator<Integer>() {
+        Queue<Integer> priorityQueue = new PriorityQueue<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return map.get(o1) - map.get(o2);
