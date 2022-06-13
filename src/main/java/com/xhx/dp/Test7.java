@@ -35,38 +35,45 @@ public class Test7 {
         int[] locations = {2,3,6,8,4};
         System.out.println(countRoutes(locations,1,3,5));
     }
-
-    /*public int countRoutes(int[] locations, int start, int finish, int fuel) {
+    int MOD = 1000000007;
+    //动态规划
+    public int countRoutes(int[] locations, int start, int finish, int fuel) {
         int n = locations.length;
-        int ans = 0;
-        int[][] dp = new int[fuel + 1][n];
-        dp[0][start] = 1;
-        for (int t = 1; t <= fuel; ++t) {
-            for(int i = 0; i < n; ++i) {
-                for(int j = 0; j < n; ++j) {
-                    if (i == j)
-                        continue;
-                    int cost = Math.abs(locations[i] - locations[j]);
-                    if (t - cost >= 0) {
-                        dp[t][i] = (int) (((long) dp[t][i] + dp[t -cost][j]) % 1000000007);
+
+        // f[i][j] 代表从位置 i 出发，当前油量为 j 时，到达目的地的路径数
+        int[][] f = new int[n][fuel + 1];
+
+        // 对于本身位置就在目的地的状态，路径数为 1
+        for (int i = 0; i <= fuel; i++) f[finish][i] = 1;
+
+        // 从状态转移方程可以发现 f[i][fuel]=f[i][fuel]+f[k][fuel-need]
+        // 在计算 f[i][fuel] 的时候依赖于 f[k][fuel-need]
+        // 其中 i 和 k 并无严格的大小关系
+        // 而 fuel 和 fuel-need 具有严格大小关系：fuel >= fuel-need
+        // 因此需要先从小到大枚举油量
+        for (int cur = 0; cur <= fuel; cur++) {
+            for (int i = 0; i < n; i++) {
+                for (int k = 0; k < n; k++) {
+                    if (i != k) {
+                        int need = Math.abs(locations[i] - locations[k]);
+                        if (cur >= need) {
+                            f[i][cur] += f[k][cur-need];
+                            f[i][cur] %= MOD;
+                        }
                     }
                 }
             }
         }
-        for (int t = 0; t <= fuel; ++t) {
-            ans = (int) (((long) ans + dp[t][finish]) % 1000000007);
-        }
-        return ans;
-    }*/
-    int MOD = 1000000007;
-    int[][] f;
+        return f[start][fuel];
+    }
+    //记忆化搜索
+    /*int[][] f;//f[i][fuel] 代表从位置 i 出发，当前剩余的油量为 fuel 的前提下，到达目标位置的「路径数量」
     public int countRoutes(int[] locations, int start, int finish, int fuel) {
         f = new int[locations.length][fuel + 1];
         for (int[] ints : f) {
             Arrays.fill(ints,-1);
         }
         return dfs(locations,start,finish,fuel);
-
     }
 
     private int dfs(int[] locations, int pos, int finish, int reset){
@@ -77,6 +84,8 @@ public class Test7 {
         if (Math.abs(locations[pos]-locations[finish]) > reset){
             return 0;
         }
+        // 计算油量为 fuel，从位置 pos 到 finish 的路径数量
+        // 由于每个点都可以经过多次，如果 pos = finish，那么本身就算一条路径
         for (int i = 0; i < locations.length; i++) {
             if (pos != i){
                 int cost;
@@ -91,6 +100,5 @@ public class Test7 {
             f[pos][reset] %= MOD;
         }
         return f[pos][reset];
-    }
-
+    }*/
 }
