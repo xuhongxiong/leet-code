@@ -23,7 +23,8 @@ public class Test6 {
 
     @Test
     public void test() {
-        int[] nums = {9,8,7,6,5,3,4,1};
+//        int[] nums = {9,8,7,6,5,3,4,1};
+        int[] nums = {1,2,3,1};
         System.out.println(findPeakElement(nums));
     }
 
