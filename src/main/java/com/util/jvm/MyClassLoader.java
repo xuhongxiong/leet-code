@@ -2,6 +2,7 @@ package com.util.jvm;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -30,17 +31,34 @@ public class MyClassLoader extends ClassLoader{
 
     private byte[] getClassData(String className){
         String path = classNameToPath(className);
+        InputStream ins = null;
+        ByteArrayOutputStream bos = null;
         try {
-            InputStream inputStream = new FileInputStream(path);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ins = new FileInputStream(path);
+            bos = new ByteArrayOutputStream();
             byte[] bytes = new byte[1024];
             int len;
-            while ((len = inputStream.read(bytes)) != -1){
+            while ((len = ins.read(bytes)) != -1){
                 bos.write(bytes,0, len);
             }
             return bos.toByteArray();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (ins != null){
+                    ins.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (bos != null){
+                    bos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;
@@ -60,6 +78,7 @@ public class MyClassLoader extends ClassLoader{
             Class<?> clazz4 = myClassLoader1.loadClass("com.util.jvm.User");
             System.out.println(clazz4);
             System.out.println(clazz4.getClassLoader());
+            System.out.println(clazz4.getClassLoader().getParent());
             Class<?> clazz5 = myClassLoader1.loadClass("com.util.jvm.User");
             System.out.println(clazz4 == clazz5);
 
