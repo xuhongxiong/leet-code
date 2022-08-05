@@ -1,7 +1,4 @@
-package com.util.spring.example;
-
-
-import com.util.spring.interfaceMstr.Component;
+package com.util.design.command;
 
 /**
  * <p>Project: test </p>
@@ -11,10 +8,12 @@ import com.util.spring.interfaceMstr.Component;
  *
  * @author <a href="mailto:xuhongxiong@karrytech.com">Xu HongXiong</a>
  */
-@Component
-public class GeelyCar implements Car {
-    @Override
-    public void run() {
-        System.out.println("geely car running");
+public class LightReceiver {
+    void on(){
+        System.out.println("开灯");
+    }
+
+    void off(){
+        System.out.println("关灯");
     }
 }

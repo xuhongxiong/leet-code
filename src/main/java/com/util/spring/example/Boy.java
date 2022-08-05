@@ -1,7 +1,8 @@
 package com.util.spring.example;
 
-import com.xhx.spring.interfaceMstr.Autowired;
-import com.xhx.spring.interfaceMstr.Component;
+
+import com.util.spring.interfaceMstr.Autowired;
+import com.util.spring.interfaceMstr.Component;
 
 /**
  * <p>Project: test </p>

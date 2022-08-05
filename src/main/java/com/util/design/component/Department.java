@@ -1,7 +1,4 @@
-package com.util.spring.example;
-
-
-import com.util.spring.interfaceMstr.Component;
+package com.util.design.component;
 
 /**
  * <p>Project: test </p>
@@ -11,10 +8,13 @@ import com.util.spring.interfaceMstr.Component;
  *
  * @author <a href="mailto:xuhongxiong@karrytech.com">Xu HongXiong</a>
  */
-@Component
-public class GeelyCar implements Car {
+public class Department extends OrganizationComponent{
+    public Department(String name, String desc) {
+        super(name, desc);
+    }
+
     @Override
-    public void run() {
-        System.out.println("geely car running");
+    void print() {
+        System.out.println(getName());
     }
 }

@@ -1,7 +1,4 @@
-package com.util.spring.example;
-
-
-import com.util.spring.interfaceMstr.Component;
+package com.util.design.template;
 
 /**
  * <p>Project: test </p>
@@ -11,10 +8,10 @@ import com.util.spring.interfaceMstr.Component;
  *
  * @author <a href="mailto:xuhongxiong@karrytech.com">Xu HongXiong</a>
  */
-@Component
-public class GeelyCar implements Car {
-    @Override
-    public void run() {
-        System.out.println("geely car running");
+public class Client {
+
+    public static void main(String[] args) {
+        SoyaMilk peanutSoyaMilk = new PeanutSoyaMilk();
+        peanutSoyaMilk.make();
     }
 }

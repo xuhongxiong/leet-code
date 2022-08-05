@@ -1,7 +1,8 @@
 package com.util.spring.example;
 
-import com.xhx.spring.ApplicationContext;
-import com.xhx.spring.interfaceMstr.ComponentScan;
+
+import com.util.spring.ApplicationContext;
+import com.util.spring.interfaceMstr.ComponentScan;
 
 /**
  * <p>Project: test </p>

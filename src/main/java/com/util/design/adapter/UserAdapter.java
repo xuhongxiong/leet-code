@@ -1,7 +1,4 @@
-package com.util.spring.example;
-
-
-import com.util.spring.interfaceMstr.Component;
+package com.util.design.adapter;
 
 /**
  * <p>Project: test </p>
@@ -11,10 +8,14 @@ import com.util.spring.interfaceMstr.Component;
  *
  * @author <a href="mailto:xuhongxiong@karrytech.com">Xu HongXiong</a>
  */
-@Component
-public class GeelyCar implements Car {
+public class UserAdapter implements IUserService{
     @Override
-    public void run() {
-        System.out.println("geely car running");
+    public void insert() {
+        System.out.println(2222);
+    }
+
+    @Override
+    public void update() {
+        System.out.println(333);
     }
 }
