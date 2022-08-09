@@ -24,12 +24,11 @@ public class ReflectUtil {
         Son son = new Son();
         SonVo sonVo = new SonVo();
         sonVo.setAge(new BigDecimal(1));
-        setValue(son,sonVo,null);
+        setValue(son,sonVo);
         System.out.println(son.getAge());
     }
 
-    private <T,K>void setValue(T father, K sonVo, List<String> includeFields) throws Exception {
-
+    private <T>void setValue(T father, T sonVo) throws Exception {
         Class<?> aClass = father.getClass();
         Field[] fields = aClass.getDeclaredFields();
         Class<?> sonVoClass = sonVo.getClass();
