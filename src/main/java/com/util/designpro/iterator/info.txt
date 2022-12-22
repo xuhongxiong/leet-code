@@ -1,0 +1,5 @@
+迭代器模式
+1、Iterator迭代器接口，含hasNext，next，remove
+2、ConcreteIterator具体的迭代器类，管理迭代
+3、Aggregate一个统一的聚合接口，将客户端和具体聚合分开
+4、ConcreteAggregate具体的聚合对象持有集合，并提供一个方法，返回一个迭代器，该迭代器可遍历集合

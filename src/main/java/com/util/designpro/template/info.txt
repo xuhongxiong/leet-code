@@ -1,0 +1,3 @@
+模板模式
+1、AbstractClass抽象类，类中实现了模板方法（template），定义了算法骨架，具体子类需要去实现其他的抽象方法operation2,3,4
+2、ConcreteClass实现抽象方法operation2,3,4，已完成算法中特定子类的步骤

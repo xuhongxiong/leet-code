@@ -1,0 +1,5 @@
+装饰者模式
+动态的将新功能附加在对象上。体现了开闭原则
+1、component主体：类似前面的drink
+2、concreteComponent：具体的主体
+3、Decorator：装饰者
