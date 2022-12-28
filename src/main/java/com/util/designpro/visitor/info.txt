@@ -1,4 +1,4 @@
-观察者模式
+访问者模式
 1、visitor是抽象访问者，为该对象结构中的ConcreteElement的每一个类声明一个visit操作
 2、concreteVisitor是具体访问者，实现每个有visitor声明的操作，是每个操作实现的部分
 3、ObjectStructure能枚举它的元素，可以提供一个高层的接口，用来允许访问者访问元素
