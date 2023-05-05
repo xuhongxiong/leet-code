@@ -4,12 +4,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>Project: test </p>
- * <p>Description: </p>
- * <p>Copyright (c) 2023 Karrytech (Shanghai/Beijing) Co., Ltd.</p>
- * <p>All Rights Reserved.</p>
- *
- * @author <a href="mailto:xuhongxiong@karrytech.com">Xu HongXiong</a>
+ * applyToEither:两个任务有一个执行完成,获取它的返回值,处理任务并有新的返回值
+ * acceptEither:两个任务有一个执行完成,获取它的返回值,处理任务,没有新的返回值
+ * runAfterEither:两个任务有一个执行完成,不需要获取 future 的结果,处理任务,也没有返回值
  */
 public class CompletableFutureTest3 {
     public static void main(String[] args) {

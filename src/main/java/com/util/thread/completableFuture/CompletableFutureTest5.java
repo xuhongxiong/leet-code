@@ -5,12 +5,12 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
 
 /**
- * <p>Project: test </p>
- * <p>Description: </p>
- * <p>Copyright (c) 2023 Karrytech (Shanghai/Beijing) Co., Ltd.</p>
- * <p>All Rights Reserved.</p>
+ *  多任务组合(allOf、anyOf)
+ * ①. allOf:等待所有任务完成
+ * (public static CompletableFuture<Void> allOf(CompletableFuture<?>... cfs))
  *
- * @author <a href="mailto:xuhongxiong@karrytech.com">Xu HongXiong</a>
+ * ②. anyOf:只要有一个任务完成
+ * (public static CompletableFuture<Object> anyOf(CompletableFuture<?>... cfs))
  */
 public class CompletableFutureTest5 {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
