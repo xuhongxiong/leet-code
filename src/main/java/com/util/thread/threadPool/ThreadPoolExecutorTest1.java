@@ -11,17 +11,15 @@ import java.util.concurrent.TimeUnit;
  * 在创建了线程池后,当有请求任务来之后,就会安排池中的线程去执行请求任务,近似理解为今日当值线程
  * 当线程池中的线程数目达到corePoolSize后,就会把到达的任务放入到缓存队列当中.
  * ②. maximumPoolSize:线程池能够容纳同时执行的最大线程数,此值大于等于1
- *
  * ③. keepAliveTime:多余的空闲线程存活时间,当空间时间达到keepAliveTime值时,多余的线程会被销毁直到只剩下corePoolSize个线程为止(非核心线程)
- *
  * ④. unit:keepAliveTime的单位
- *
  * ⑤. workQueue:任务队列,被提交但尚未被执行的任务(候客区)
- *
  * ⑥. threadFactory:表示生成线程池中工作线程的线程工厂,用户创建新线程,一般用默认即可(银行网站的logo | 工作人员的制服 | 胸卡等)
- *
  * ⑦. handler:拒绝策略,表示当线程队列满了并且工作线程大于等于线程池的最大显示 数(maxnumPoolSize)时如何来拒绝
  *
+ *  ExecutorService threadPool= Executors.newFixedThreadPool(5);//一池5个处理线程
+ *  ExecutorService threadPool=Executors.newSingleThreadExecutor();//一池一线程
+ *  ExecutorService threadPool= Executors.newCachedThreadPool();//一池N线程
  *
  * ①. 线程池的拒绝策略请你谈谈
  * ①. 等待队列也已经排满了,再也塞不下新的任务了。同时,线程池的maximumPoolSize也到达了,无法接续为新任务服务,这时我们需要拒绝策略机制合理的处理这个问题
