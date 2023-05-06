@@ -66,7 +66,7 @@ public class InterruptDemo {
                 atomicBoolean.set(true);
             }
         },"t2").start();*/
-        m6();
+        m5();
 
     }
 

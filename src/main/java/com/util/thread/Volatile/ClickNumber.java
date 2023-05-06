@@ -8,12 +8,7 @@ import java.util.concurrent.atomic.LongAdder;
 import java.util.function.LongBinaryOperator;
 
 /**
- * <p>Project: test </p>
- * <p>Description: </p>
- * <p>Copyright (c) 2023 Karrytech (Shanghai/Beijing) Co., Ltd.</p>
- * <p>All Rights Reserved.</p>
- *
- * @author <a href="mailto:xuhongxiong@karrytech.com">Xu HongXiong</a>
+ * LongAdder高性能对比code演示
  */
 public class ClickNumber {
     int number = 1;

@@ -1,7 +1,7 @@
 package com.util.thread.Volatile;
 
 /**
- * 验证volatile可见性
+ * 验证volatile可见性，不能保证原子性
  */
 public class UseVolatileDemo {
     private volatile static boolean flag = true;
