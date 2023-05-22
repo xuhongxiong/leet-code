@@ -28,6 +28,8 @@ public class InterruptDemo {
         Thread.currentThread().interrupt();
         System.out.println(Thread.currentThread().getName()+"---"+Thread.interrupted());
         System.out.println(Thread.currentThread().getName()+"---"+Thread.interrupted());*/
+        //System.out.println(Thread.currentThread().getName()+"---"+Thread.currentThread().isInterrupted());
+        //System.out.println(Thread.currentThread().getName()+"---"+Thread.currentThread().isInterrupted());
 
         /**
          *  如何使用中断标识停止线程
@@ -104,6 +106,9 @@ public class InterruptDemo {
         },"t2").start();
     }
 
+    /**
+     *中断为true后,并不是立刻stop程序
+     */
     public static void m6(){
         Thread t1 = new Thread(new Runnable() {
             @Override

@@ -4,6 +4,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
+ * CAS
+ *  CAS的全称为Compare-And-Swap ,它是一条CPU并发原语,比较工作内存值(预期值)和主物理内存的共享值是否相同,相同则执行规定操作，否则继续比较直到主内存和工作内存的值一致为止。这个过程是原子的
+ * (AtomicInteger类主要利用CAS(compare and swap)+volatile和native方法来保证原子操作,从而避免synchronized的高开销,执行效率大为提升)
+ *
  *  CAS的缺点
  * ①. 循环时间长开销很大
  * 我们可以看到getAndInt方法执行时,有个do while
