@@ -3,6 +3,7 @@ package com.xhx.tree;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,6 +18,12 @@ import java.util.List;
  * 根 -> 左 ->右
  */
 public class Test1 {
+    @Test
+    public void test(){
+        TreeNode node = new TreeNode(1, new TreeNode(3, new TreeNode(5),new TreeNode(6)),new TreeNode(2));
+        List<Integer> integers = preorderTraversal(node);
+        System.out.println(Arrays.toString(integers.toArray()));
+    }
 
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
