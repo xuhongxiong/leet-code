@@ -71,6 +71,7 @@ public class ClickNumber {
         //atomicLong 137
         //longAdder 4
         //longAccumulator 15
+        //System.out.println(clickNumber.longAdder.sum());
         long end = System.currentTimeMillis();
         System.out.println(end-start);
     }

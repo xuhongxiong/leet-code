@@ -1,10 +1,13 @@
 package com.util.reflect;
 
+import com.xhx.test.People;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +27,9 @@ public class ReflectUtil {
         Son son = new Son();
         SonVo sonVo = new SonVo();
         sonVo.setAge(new BigDecimal(1));
+        sonVo.setName("111");
+        sonVo.setStringList(Arrays.asList("1","2"));
+        sonVo.setPeopleList(Arrays.asList(new People(new BigDecimal(1),"1",new BigDecimal(1))));
         setValue(son,sonVo);
         System.out.println(son.getAge());
     }
@@ -44,10 +50,18 @@ public class ReflectUtil {
             if (voFields.contains(attributeName)){
                 //Object value = m.invoke(sonVo);
                 Field voField = sonVoClass.getDeclaredField(attributeName);
-                voField.setAccessible(true);
-                Object value = voField.get(sonVo);
-                declaredField.setAccessible(true);
-                declaredField.set(father,value);
+
+                Class<?> type = voField.getType();
+                Type genericType = voField.getGenericType();
+                System.out.println(voField.getName());
+                System.out.println(voField.getType().getName());
+                System.out.println(voField.getGenericType().getTypeName());
+                if (voField.getGenericType().getTypeName().equals(declaredField.getGenericType().getTypeName())){
+                    voField.setAccessible(true);
+                    Object value = voField.get(sonVo);
+                    declaredField.setAccessible(true);
+                    declaredField.set(father,value);
+                }
             }
         }
     }

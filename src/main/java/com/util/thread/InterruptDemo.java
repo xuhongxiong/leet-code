@@ -1,5 +1,6 @@
 package com.util.thread;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -68,7 +69,7 @@ public class InterruptDemo {
                 atomicBoolean.set(true);
             }
         },"t2").start();*/
-        m5();
+        m6();
 
     }
 
@@ -116,23 +117,24 @@ public class InterruptDemo {
                 for (int i = 0; i < 300; i++) {
                     System.out.println(i);
                 }
-                System.out.println("t1.interrupt() 之后" + Thread.currentThread().isInterrupted());
+                System.out.println("t1.interrupt() 之后" + Thread.currentThread().isInterrupted());//true
             }
         }, "t1");
         t1.start();
+        System.out.println("t1.isInterrupted()默认值 --- "+t1.isInterrupted());//false
         try {
-            Thread.sleep(3);
+            TimeUnit.MILLISECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         t1.interrupt();
-        System.out.println("t1.isInterrupted() --- "+t1.isInterrupted());
+        System.out.println("t1.isInterrupted() --- "+t1.isInterrupted());//true
         try {
-            Thread.sleep(3000);
+            TimeUnit.MILLISECONDS.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("t1.isInterrupted() 3000 --- "+t1.isInterrupted());
+        System.out.println("t1.isInterrupted() 3000 --- "+t1.isInterrupted());//false 中断不活动的线程不会产生任何影响
 
     }
 }

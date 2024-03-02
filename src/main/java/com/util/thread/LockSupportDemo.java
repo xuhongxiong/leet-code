@@ -1,6 +1,9 @@
 package com.util.thread;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.LockSupport;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
 (1).阻塞
@@ -16,10 +19,55 @@ static void unpark(Thread thread)
 * */
 public class LockSupportDemo {
     public static void main(String[] args) {
+        condition();
+    }
+
+    public static void condition(){
+        ReentrantLock lock = new ReentrantLock();
+        Condition condition = lock.newCondition();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lock.lock();
+                try {
+                    System.out.println("come in");
+                    condition.await();
+                    System.out.println("被唤醒");
+                }catch (Exception e){
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+            }
+        },"t1").start();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lock.lock();
+                try {
+                    System.out.println("t2 通知");
+                    condition.signal();
+                }catch (Exception e){
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+            }
+        },"t2").start();
+
+    }
+
+    public static void lockSupport(){
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println(Thread.currentThread().getName() + "work");
+                //LockSupport.unpark(Thread.currentThread());
                 LockSupport.park();
                 System.out.println(Thread.currentThread().getName() + "被唤醒");
             }
@@ -37,6 +85,5 @@ public class LockSupportDemo {
                 LockSupport.unpark(t1);
             }
         },"t2").start();
-
     }
 }

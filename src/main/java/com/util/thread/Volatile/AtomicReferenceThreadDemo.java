@@ -7,14 +7,16 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class AtomicReferenceThreadDemo {
     static AtomicReference<Thread> reference = new AtomicReference<>();
-    static Thread thread;
     public static void lock(){
-        thread = Thread.currentThread();
+        Thread thread = Thread.currentThread();
         System.out.println(thread.getName()+"coming");
-        reference.compareAndSet(null,thread);
+        while (!reference.compareAndSet(null,thread)){
+
+        }
     }
 
     public static void unLock(){
+        Thread thread = Thread.currentThread();
         System.out.println(thread.getName()+"over");
         reference.compareAndSet(thread,null);
     }

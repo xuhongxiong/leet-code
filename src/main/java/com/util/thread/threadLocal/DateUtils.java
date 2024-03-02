@@ -33,8 +33,9 @@ public class DateUtils {
                     try {
                         System.out.println(Thread.currentThread().getName() + ": " + DateUtils.parse("2020-11-11 11:11:11"));
                     } catch (Exception e) {
-                        DateUtils.threadLocal.remove();
                         e.printStackTrace();
+                    } finally {
+                        DateUtils.threadLocal.remove();
                     }
                 }
             },String.valueOf(i)).start();

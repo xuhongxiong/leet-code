@@ -70,7 +70,7 @@ public class MyClassLoader extends ClassLoader{
     }
 
     public static void main(String[] args) {
-        String rootDir = "D:\\work\\workspace\\leet-code\\target\\classes\\";
+        String rootDir = "C:\\workspace\\leet-code\\target\\classes\\";
         try {
             MyClassLoader myClassLoader1 = new MyClassLoader(rootDir);
             Class clazz1 = myClassLoader1.findClass("com.util.jvm.User");

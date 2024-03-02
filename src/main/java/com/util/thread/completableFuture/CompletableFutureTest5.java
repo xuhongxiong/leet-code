@@ -51,6 +51,7 @@ public class CompletableFutureTest5 {
             }
         });
         CompletableFuture<Void> completableFuture4 = CompletableFuture.allOf(completableFuture1, completableFuture2, completableFuture3);
+        System.out.println("over1111");
         completableFuture4.get();
 
         //CompletableFuture<Object> completableFuture = CompletableFuture.anyOf(completableFuture1, completableFuture2, completableFuture3);

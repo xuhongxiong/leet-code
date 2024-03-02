@@ -12,7 +12,9 @@ public class CompletableFutureTest3 {
     public static void main(String[] args) {
         System.out.println(CompletableFuture.supplyAsync(() -> {
             //暂停几秒钟线程
-            try { TimeUnit.SECONDS.sleep(1);  } catch (InterruptedException e) {e.printStackTrace();}
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (Exception e) {e.printStackTrace();}
             return 1;
         }).applyToEither(CompletableFuture.supplyAsync(() -> {
             try { TimeUnit.SECONDS.sleep(2);  } catch (InterruptedException e) {e.printStackTrace();}

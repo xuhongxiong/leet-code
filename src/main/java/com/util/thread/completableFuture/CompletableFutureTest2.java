@@ -4,6 +4,8 @@ import com.xhx.test.People;
 
 import java.math.BigDecimal;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -19,6 +21,7 @@ import java.util.function.Supplier;
  */
 public class CompletableFutureTest2 {
     public static void main(String[] args) {
+        ExecutorService threadPool = Executors.newFixedThreadPool(3);
         long start = System.currentTimeMillis();
         People people = new People();
         /*ThreadPoolExecutor executor = new ThreadPoolExecutor(2,
@@ -29,7 +32,7 @@ public class CompletableFutureTest2 {
         CompletableFuture<Void> completableFuture = CompletableFuture.supplyAsync(new Supplier<Integer>() {
             @Override
             public Integer get() {
-                System.out.println(Thread.currentThread().getName());
+                System.out.println("11"+Thread.currentThread().getName());
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
@@ -37,10 +40,10 @@ public class CompletableFutureTest2 {
                 }
                 return 1;
             }
-        }).thenAcceptAsync(new Consumer<Integer>() {
+        },threadPool).thenAcceptAsync(new Consumer<Integer>() {
             @Override
             public void accept(Integer integer) {
-                System.out.println(Thread.currentThread().getName());
+                System.out.println("22"+Thread.currentThread().getName());
                 try {
                     Thread.sleep(1000);
                 } catch (Exception e) {
@@ -61,11 +64,12 @@ public class CompletableFutureTest2 {
                 }
                 people.setName("xhx");
             }
-        });
+        },threadPool);
         // 等待所有任务都完成再返回
         CompletableFuture.allOf(completableFuture,completableFuture1).join();
         long end = System.currentTimeMillis();
         System.out.println("消耗时间为:"+(end-start));
         System.out.println(people);
+        threadPool.shutdown();
     }
 }

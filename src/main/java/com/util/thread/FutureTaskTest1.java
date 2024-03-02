@@ -3,6 +3,7 @@ package com.util.thread;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>Project: test </p>
@@ -18,7 +19,18 @@ public class FutureTaskTest1 {
         FutureTask<Integer> futureTask = new FutureTask<>(myCallable);
         new Thread(futureTask).start();
         new Thread(futureTask).start();
+        //阻塞
         Integer integer = futureTask.get();
+        //过时不候
+        //futureTask.get(2L, TimeUnit.SECONDS);
+        //轮询
+        /*while (true){
+            if (futureTask.isDone()){
+                break;
+            } else {
+                System.out.println("阻塞中");
+            }
+        }*/
         System.out.println(integer);
     }
 }
@@ -32,6 +44,7 @@ class MyCallable implements Callable<Integer> {
         for (int i = 0; i < 3; i++) {
             sum += i;
         }
+        System.out.println("call");
         return sum;
     }
 }

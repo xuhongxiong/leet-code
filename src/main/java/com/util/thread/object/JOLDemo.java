@@ -27,6 +27,6 @@ public class JOLDemo {
                     System.out.println(ClassLayout.parseInstance(o).toPrintable());
                 }
             }
-        }).start();
+        },"t1").start();
     }
 }
